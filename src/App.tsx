@@ -2,13 +2,14 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import Calendar from "@/components/Calendar";
-import EventsListSheet from "./components/EventsListSheet";
+import EventsListSheet from "@/components/EventsListSheet";
+import AddEventDialog from "@/components/AddEventDialog";
+import EditEventDialog from "@/components/EditEventDialog";
 
 import { useMonth } from "@/hooks/useMonth";
 import { useYear } from "@/hooks/useYear";
 
 import { months } from "@/constants/months";
-import AddEventDialog from "./components/AddEventDialog";
 
 const App = () => {
   const { month, setMonth } = useMonth();
@@ -35,7 +36,9 @@ const App = () => {
     <div className="pt-5 px-5 flex flex-col gap-y-8">
       <EventsListSheet />
 
-      <AddEventDialog/>
+      <AddEventDialog />
+
+      <EditEventDialog />
 
       <div className="flex justify-between items-center w-full">
         <Button onClick={handlePrevious}>

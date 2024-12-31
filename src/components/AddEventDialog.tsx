@@ -42,6 +42,59 @@ const AddEventDialog = () => {
   const [color, setColor] = useState("");
 
   const handleAddEvent = () => {
+    // Checking for event clash
+    const event = events.find((event) => {
+      const eventDate = new Date(event.date);
+      const eventStartTime = new Date(
+        eventDate.getFullYear(),
+        eventDate.getMonth(),
+        eventDate.getDate(),
+        parseInt(event.startTime.split(":")[0]),
+        parseInt(event.startTime.split(":")[1])
+      ).getTime();
+      const eventEndTime = new Date(
+        eventDate.getFullYear(),
+        eventDate.getMonth(),
+        eventDate.getDate(),
+        parseInt(event.endTime.split(":")[0]),
+        parseInt(event.endTime.split(":")[1])
+      ).getTime();
+
+      const newEventStartTime = new Date(
+        year,
+        month,
+        parseInt(selectedDate!),
+        parseInt(startTime.split(":")[0]),
+        parseInt(startTime.split(":")[1])
+      ).getTime();
+      const newEventEndTime = new Date(
+        year,
+        month,
+        parseInt(selectedDate!),
+        parseInt(endTime.split(":")[0]),
+        parseInt(endTime.split(":")[1])
+      ).getTime();
+
+      if (newEventStartTime >= eventStartTime) {
+        if (newEventStartTime <= eventEndTime) {
+          return true;
+        } else {
+          return false;
+        }
+      } else {
+        if (newEventEndTime <= eventStartTime) {
+          return true;
+        } else if (newEventEndTime >= eventEndTime) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    });
+    if (event) {
+      return alert("There is already an event at this time slot");
+    }
+
     const newEvents: EventType[] = [
       ...events,
       {

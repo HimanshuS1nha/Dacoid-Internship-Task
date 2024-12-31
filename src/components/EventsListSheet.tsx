@@ -92,6 +92,9 @@ const EventsListSheet = () => {
                         ? event.description?.substring(0, 20) + "..."
                         : "No description"}
                     </p>
+                    <p className="text-gray-100 text-sm">
+                      {event.startTime} to {event.endTime}
+                    </p>
                   </div>
 
                   <div className="flex gap-x-3 items-center">
@@ -101,7 +104,8 @@ const EventsListSheet = () => {
                       className="cursor-pointer"
                       onClick={() => {
                         setSelectedEvent(event);
-                        setIsEditEventDialogVisible(false);
+                        setIsEditEventDialogVisible(true);
+                        setIsVisible(false);
                       }}
                     />
                     <Trash2
