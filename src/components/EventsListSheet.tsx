@@ -15,6 +15,7 @@ import { useEventsListSheet } from "@/hooks/useEventsListSheet";
 import { useMonth } from "@/hooks/useMonth";
 import { useYear } from "@/hooks/useYear";
 import { useAddEventDialog } from "@/hooks/useAddEventDialog";
+import { useEditEventDialog } from "@/hooks/useEditEventDialog";
 
 import { months } from "@/constants/months";
 
@@ -25,6 +26,9 @@ const EventsListSheet = () => {
   const month = useMonth((state) => state.month);
   const year = useYear((state) => state.year);
   const setIsAddEventDialogVisible = useAddEventDialog(
+    (state) => state.setIsVisible
+  );
+  const setIsEditEventDialogVisible = useEditEventDialog(
     (state) => state.setIsVisible
   );
 
@@ -97,7 +101,7 @@ const EventsListSheet = () => {
                       className="cursor-pointer"
                       onClick={() => {
                         setSelectedEvent(event);
-                        setIsVisible(false);
+                        setIsEditEventDialogVisible(false);
                       }}
                     />
                     <Trash2
