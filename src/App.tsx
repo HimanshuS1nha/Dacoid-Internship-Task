@@ -8,6 +8,7 @@ import { useMonth } from "@/hooks/useMonth";
 import { useYear } from "@/hooks/useYear";
 
 import { months } from "@/constants/months";
+import AddEventDialog from "./components/AddEventDialog";
 
 const App = () => {
   const { month, setMonth } = useMonth();
@@ -33,6 +34,8 @@ const App = () => {
   return (
     <div className="pt-5 px-5 flex flex-col gap-y-8">
       <EventsListSheet />
+
+      <AddEventDialog/>
 
       <div className="flex justify-between items-center w-full">
         <Button onClick={handlePrevious}>

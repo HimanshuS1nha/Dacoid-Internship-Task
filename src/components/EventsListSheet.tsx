@@ -14,6 +14,7 @@ import { useSelectedDate } from "@/hooks/useSelectedDate";
 import { useEventsListSheet } from "@/hooks/useEventsListSheet";
 import { useMonth } from "@/hooks/useMonth";
 import { useYear } from "@/hooks/useYear";
+import { useAddEventDialog } from "@/hooks/useAddEventDialog";
 
 import { months } from "@/constants/months";
 
@@ -23,6 +24,9 @@ const EventsListSheet = () => {
   const { isVisible, setIsVisible } = useEventsListSheet();
   const month = useMonth((state) => state.month);
   const year = useYear((state) => state.year);
+  const setIsAddEventDialogVisible = useAddEventDialog(
+    (state) => state.setIsVisible
+  );
 
   const filtertedEvents = events.filter((event) => {
     const eventDate = new Date(event.date);
@@ -57,6 +61,7 @@ const EventsListSheet = () => {
               className="bg-emerald-600 hover:bg-emerald-600/80 focus:outline-none focus-visible:ring-transparent"
               onClick={() => {
                 setIsVisible(false);
+                setIsAddEventDialogVisible(true);
               }}
             >
               <Plus color="white" />
