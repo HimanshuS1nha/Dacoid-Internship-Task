@@ -20,6 +20,10 @@
     npm run build
    ```
 
+## Demo
+
+Live Demo - [Click Here](https://event-calendar-dacoid.vercel.app/)
+
 ## Screenshots
 
 ![Dacoid Internship Task 1](https://github.com/user-attachments/assets/c4922f3c-276c-4809-9074-d2c893a2865e)
