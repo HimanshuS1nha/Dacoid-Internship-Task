@@ -42,6 +42,25 @@ const AddEventDialog = () => {
   const [color, setColor] = useState("");
 
   const handleAddEvent = () => {
+    const newEventStartTime = new Date(
+      year,
+      month,
+      parseInt(selectedDate!),
+      parseInt(startTime.split(":")[0]),
+      parseInt(startTime.split(":")[1])
+    ).getTime();
+    const newEventEndTime = new Date(
+      year,
+      month,
+      parseInt(selectedDate!),
+      parseInt(endTime.split(":")[0]),
+      parseInt(endTime.split(":")[1])
+    ).getTime();
+
+    if (newEventEndTime < newEventStartTime) {
+      return alert("Start time cannot be less than end time");
+    }
+
     // Checking for event clash
     const event = events.find((event) => {
       const eventDate = new Date(event.date);
@@ -58,21 +77,6 @@ const AddEventDialog = () => {
         eventDate.getDate(),
         parseInt(event.endTime.split(":")[0]),
         parseInt(event.endTime.split(":")[1])
-      ).getTime();
-
-      const newEventStartTime = new Date(
-        year,
-        month,
-        parseInt(selectedDate!),
-        parseInt(startTime.split(":")[0]),
-        parseInt(startTime.split(":")[1])
-      ).getTime();
-      const newEventEndTime = new Date(
-        year,
-        month,
-        parseInt(selectedDate!),
-        parseInt(endTime.split(":")[0]),
-        parseInt(endTime.split(":")[1])
       ).getTime();
 
       if (newEventStartTime >= eventStartTime) {

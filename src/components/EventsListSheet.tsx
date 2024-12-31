@@ -1,4 +1,5 @@
 import { Pencil, Plus, Trash2 } from "lucide-react";
+import { useState } from "react";
 
 import {
   Sheet,
@@ -8,6 +9,7 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 import { useEvents } from "@/hooks/useEvents";
 import { useSelectedDate } from "@/hooks/useSelectedDate";
@@ -32,15 +34,18 @@ const EventsListSheet = () => {
     (state) => state.setIsVisible
   );
 
+  const [searchQuery, setSearchQuery] = useState("");
+
   const filtertedEvents = events.filter((event) => {
     const eventDate = new Date(event.date);
     const dateSelected = new Date(year, month, parseInt(selectedDate!));
 
-    return (
-      eventDate.getFullYear() === dateSelected.getFullYear() &&
+    return eventDate.getFullYear() === dateSelected.getFullYear() &&
       eventDate.getMonth() === dateSelected.getMonth() &&
-      eventDate.getDate() === dateSelected.getDate()
-    );
+      eventDate.getDate() === dateSelected.getDate() &&
+      searchQuery !== ""
+      ? event.title.toLowerCase().includes(searchQuery.toLowerCase())
+      : true;
   });
 
   const handleDeleteEvent = (id: string) => {
@@ -73,6 +78,13 @@ const EventsListSheet = () => {
           </div>
           <SheetDescription>List of events</SheetDescription>
         </SheetHeader>
+
+        <Input
+          placeholder="Search by title"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          className="mt-4"
+        />
 
         <div className="flex flex-col gap-y-4 mt-4">
           {filtertedEvents.length > 0 ? (
