@@ -2,12 +2,21 @@ import { CalendarIcon } from "lucide-react";
 
 import { Card, CardContent } from "@/components/ui/card";
 
+import { useEventsListSheet } from "@/hooks/useEventsListSheet";
+import { useSelectedDate } from "@/hooks/useSelectedDate";
+
 const DateCard = ({ date }: { date: string }) => {
+  const setIsVisible = useEventsListSheet((state) => state.setIsVisible);
+  const setSelectedDate = useSelectedDate((state) => state.setSelectedDate);
   return (
     <Card
       className={`w-[150px] h-[85px] flex items-center justify-center hover:text-white delay-100 transition-all cursor-pointer relative ${
         date === "" ? "bg-gray-300" : "hover:bg-primary"
       }`}
+      onClick={() => {
+        setSelectedDate(date);
+        setIsVisible(true);
+      }}
     >
       {date !== "" && (
         <CardContent className="flex flex-col items-center">

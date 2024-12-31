@@ -2,6 +2,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import Calendar from "@/components/Calendar";
+import EventsListSheet from "./components/EventsListSheet";
 
 import { useMonth } from "@/hooks/useMonth";
 import { useYear } from "@/hooks/useYear";
@@ -31,6 +32,8 @@ const App = () => {
   };
   return (
     <div className="pt-5 px-5 flex flex-col gap-y-8">
+      <EventsListSheet />
+
       <div className="flex justify-between items-center w-full">
         <Button onClick={handlePrevious}>
           <ChevronLeft color="white" />
