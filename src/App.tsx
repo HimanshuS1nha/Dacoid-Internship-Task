@@ -1,6 +1,7 @@
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import Calendar from "@/components/Calendar";
 
 import { useMonth } from "@/hooks/useMonth";
 import { useYear } from "@/hooks/useYear";
@@ -41,6 +42,8 @@ const App = () => {
           <ChevronRight color="white" />
         </Button>
       </div>
+
+      <Calendar />
     </div>
   );
 };
