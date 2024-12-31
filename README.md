@@ -28,6 +28,15 @@ Live Demo - [Click Here](https://event-calendar-dacoid.vercel.app/)
 
 ![Dacoid Internship Task 1](https://github.com/user-attachments/assets/c4922f3c-276c-4809-9074-d2c893a2865e)
 
+## Features
+
+- Create, updated and delete events
+- Events are persisted in local storage
+- Modern and easy to use UI
+- Prevention for clashing of events
+- Color coding for events
+- Filter events by title
+
 ## Packages USED
 
 - React.js -> For Frontend
